@@ -19,6 +19,7 @@ Citation
 ## Setup
 
 1) Datasets
+   
    Download the datasets from the original repositories:
    - [ASV19](https://datashare.ed.ac.uk/handle/10283/3336)
    - [ASV21](https://www.asvspoof.org/index2021.html)
@@ -29,11 +30,12 @@ Citation
   You can then filter out the files according to the protocols available in the `dataset_protocols/` folder.
 
 2) Pretrained SSL Model and Feature Extraction
+   
    In our implementation we used the [w2v-bert-2.0](https://huggingface.co/facebook/w2v-bert-2.0) pretrained, frozen model.
    You can extract the average pooled representations of the audio files using the `wav2vec_bert_extractor.py` script. The output will consist of a single `.npy` file containing the features in the order listed in the protocol. 
 
 
-## Running the individual experiments
+## Running the individual experiments from the paper
 
 1) Model attribution
    For the simple model attribution based on the layer 4 features of the w2v-bert-2.0 model, you can use the `run_model_attribution.py` script. The script will use the complete set of features as listed in `config.py`, and split them into train and test partitions at a 80:20 ratio. It then fits a kNN with k=21 and displays the classification report. You can optionally use a standard scaler before fitting the kNN (just uncomment that part of the code).
@@ -41,11 +43,28 @@ Citation
    If you also opt to print or save the confusion matrix, it should resemble Figure 1 from the paper, with very few confusions across the datasets. 
    
 2) Speaker classification
-   For the LJSpeech systems' attribution as listed at the end of Section 3.2 you can use the `.py` script
-   Similarly, for the multispeaker checkpoints, you can use the `.py` script. 
+   For the LJSpeech systems' attribution as listed at the end of Section 3.2 you can use the `run_ljspeech_classification.py` script. The result (with some degree of randomness due to the train-test split) should look something like:
+    ```
+                                                  precision    recall  f1-score   support
+                                      LJSpeech       0.89      0.96      0.92       419
+          en_tts_models_en_ljspeech_fast_pitch       0.78      0.89      0.83        87
+            en_tts_models_en_ljspeech_glow-tts       0.93      0.97      0.95       104
+          en_tts_models_en_ljspeech_neural_hmm       0.96      0.85      0.90       100
+            en_tts_models_en_ljspeech_overflow       0.87      0.88      0.88       111
+       en_tts_models_en_ljspeech_speedy-speech       0.84      0.91      0.88       105
+       en_tts_models_en_ljspeech_tacotron2-DCA       1.00      0.89      0.94       103
+       en_tts_models_en_ljspeech_tacotron2-DDC       0.94      0.74      0.83       103
+    en_tts_models_en_ljspeech_tacotron2-DDC_ph       0.94      0.88      0.91       102
+                en_tts_models_en_ljspeech_vits       0.50      0.53      0.51        98
+          en_tts_models_en_ljspeech_vits--neon       0.49      0.41      0.45        98
+                                  accuracy                           0.84      1430
+                                 macro avg       0.83      0.81      0.82      1430
+                              weighted avg       0.85      0.84      0.84      1430```
 
- 
-3) OOD detection
+
+Similarly, for the multispeaker checkpoints, you can use the `.py` script. 
+
+4) OOD detection
    The last section of the paper introduced the OOD detection of novel checkpoints based on the kNN distance. The first step to achieve this is to compute...
 
 
