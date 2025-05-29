@@ -65,7 +65,7 @@ Citation
 Similarly, for the multispeaker checkpoints, you can use the `.py` script. 
 
 4) OOD detection
-   The last section of the paper introduced the OOD detection of novel checkpoints based on the kNN distance. The first step to achieve this is to compute...
+   The last section of the paper introduced the OOD detection of novel checkpoints based on the kNN distance. You can run the OOD detection using the `python run_ood.py` script. The output will show the results for each of the 5 datasets in terms of OOD detection accuracy. 5 checkpoints from each dataset are set aside: 2 for validation and 2 for testing.
 
 
 
