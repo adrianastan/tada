@@ -43,8 +43,8 @@ def read_metadata(file_path):
             if len(parts) > 1:
                 relevant_files.append(parts[0])
                 
-    ## Pay attention to this sorted list!!!!
-    return sorted(relevant_files)
+    ## Pay attention to this list!!!!
+    return relevant_files
 
 
 

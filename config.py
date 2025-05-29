@@ -1,4 +1,4 @@
-meta_dir = './dataset_protocols/'
+meta_dir = './sorted_protocols/'
 metadata = [
           "asv19_train_spk_model.txt",
           "asv19_dev_spk_model.txt",

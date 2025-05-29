@@ -18,7 +18,7 @@ valid = []
 c = 0
 for fi in metadata:
     with open(os.path.join(meta_dir,fi)) as fin:
-        for line in sorted(fin.readlines()):
+        for line in fin.readlines():
             db = fi.split('_')[0]
             if db in dbs:
                 if 'bonafide' not in line.strip().split('|')[2]:
@@ -69,7 +69,7 @@ print("Predicting Xtest...")
 Y_hat = clf.predict(Xtest)
 print(classification_report(ytest, Y_hat, target_names= list(labels.keys())))
 
-with open("results_multispeaker_systems_classification.txt", 'w') as fout:
+with open("results_multispeaker_systems_classification.log", 'w') as fout:
     fout.write(f"Training data: {Xtrain.shape[0]} | Test data: {Xtest.shape[0]} \n")
     fout.write("------\n")
 
