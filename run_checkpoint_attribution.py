@@ -19,7 +19,7 @@ valid = []
 c = 0
 for fi in metadata:
     with open(os.path.join(meta_dir,fi)) as fin:
-        for line in fin.readlines():
+        for line in sorted(fin.readlines()):
             if fi.split('_')[0] in dbs:
                 if 'bonafide' not in line.strip().split('|')[2]:
                     Y.append(fi.split('_')[0]+"_"+line.strip().split('|')[2])
@@ -77,12 +77,12 @@ print("Predicting Xtest...")
 Y_hat = clf.predict(Xtest)
 print(classification_report(ytest, Y_hat, target_names=target_names))
 
-'''
-cm = confusion_matrix(ytest, Y_hat, normalize='true')
-for k in range(cm.shape[0]):
-    print(target_names[k], end=', ')
-    for j in range(cm.shape[1]):
-        print(np.round(cm[k][j],2), end=', ')
-    print()
-'''
+with open("results_checkpoint_attribution.txt", 'w') as fout:
+    fout.write(f"Training data: {Xtrain.shape[0]} | Test data: {Xtest.shape[0]} \n")
+    fout.write("------\n")
+
+    fout.write(classification_report(ytest, Y_hat, target_names=target_names))
+    fout.write("------\n")
+
+    np.savetxt(fout, confusion_matrix(ytest, Y_hat, normalize='true'), delimiter=',', fmt='%.2f')
 

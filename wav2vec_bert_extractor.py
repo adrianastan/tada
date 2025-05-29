@@ -43,7 +43,8 @@ def read_metadata(file_path):
             if len(parts) > 1:
                 relevant_files.append(parts[0])
                 
-    return relevant_files
+    ## Pay attention to this sorted list!!!!
+    return sorted(relevant_files)
 
 
 
@@ -84,7 +85,7 @@ def main(outdir,indir, metadata_file, dataset):
 
 
 if __name__ == '__main__':
-    # wav_path
+    ## PATHS
     indir = "./audio_deepfake_datasets/TIMIT-TTS/CLEAN"
     outdir = "./features/"
     metadata_file = "./dataset_protocols/timit_clean_spk_model.txt"
