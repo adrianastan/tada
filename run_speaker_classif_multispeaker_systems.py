@@ -1,16 +1,21 @@
-import sys, os
+import os
+import random
 import numpy as np
-from sklearn.metrics import precision_recall_fscore_support, classification_report
+from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-
-os.environ["PYTHONDONTWRITEBYTECODE"] = "1"
-
 from config import *
 
-dbs = ['mlaad', 'timit']
+
+os.environ["PYTHONDONTWRITEBYTECODE"] = "1"
+SEED = 42
+random.seed(SEED)
+print(f"SEED = {SEED}")
+
+
+dbs = ['mlaad', 'timit'] # only these contain multi-speaker models
 BONAFIDES = False
 
 Y = []
@@ -49,7 +54,7 @@ print ("\nX shape:", X.shape)
 
 
 ## Train test split
-Xtrain, Xtest, ytrain, ytest = train_test_split(X, Y, test_size=0.2, random_state=22)
+Xtrain, Xtest, ytrain, ytest = train_test_split(X, Y, test_size=0.2, random_state=SEED)
 
 print("Train size: ", Xtrain.shape[0])
 print("Test size: ", Xtest.shape[0])

@@ -1,16 +1,19 @@
-import sys, os
+import os
 import numpy as np
+import random
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-
-os.environ["PYTHONDONTWRITEBYTECODE"] = "1"
-
 from config import *
 
-dbs = {'asv19':0, 'asv21':1, 'timit':2,  'mlaad':3,  'asv5':4}
+os.environ["PYTHONDONTWRITEBYTECODE"] = "1"
+SEED = 42
+random.seed(SEED)
+print(f"SEED = {SEED}")
+
+
 BONAFIDES = False
 print(f"Using BONAFIDES={BONAFIDES}\n")
 
@@ -20,15 +23,13 @@ c = 0
 for fi in metadata:
     with open(os.path.join(meta_dir,fi)) as fin:
         for line in fin.readlines():
-            if fi.split('_')[0] in dbs:
-                    if 'bonafide' not in line.strip().split('|')[2]:
-                         if ('ljspeech' in line) or ('LJSpeech' in line):
-                             Y.append(line.split('|')[1])
-                             valid.append(c)
+            if 'bonafide' not in line.strip().split('|')[2]:
+                if ('ljspeech' in line) or ('LJSpeech' in line):
+                    Y.append(line.split('|')[1])
+                    valid.append(c)
             c+=1
 
 Y = np.array(Y)
-print("Y shape: ", Y.shape)
 
 # Assign numeric labels to the different LJSpeech ckpts
 labels = {k:i for i, k in enumerate(sorted(set(Y)))}
@@ -46,11 +47,10 @@ X = np.array(X)
 # Use only the fake and LJSpeech files
 X = X[valid]
 print ("\nX shape:", X.shape)
-
+print("Y shape: ", Y.shape)
 
 ## Train test split
-Xtrain, Xtest, ytrain, ytest = train_test_split(
-                                X, Y, test_size=0.1, random_state=42)
+Xtrain, Xtest, ytrain, ytest = train_test_split(X, Y, test_size=0.2, random_state=SEED)
 
 print("Train size: ", Xtrain.shape[0])
 print("Test size: ", Xtest.shape[0])
