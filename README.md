@@ -33,20 +33,38 @@ Citation
    
    In our implementation we used the [w2v-bert-2.0](https://huggingface.co/facebook/w2v-bert-2.0) pretrained, frozen model.
 
-   You can extract the average pooled representations of the audio files using the `wav2vec_bert_extractor.py` script. The output will consist of a single `.npy` file containing the features in the order listed in the protocol file. 
+   You can extract the average pooled representations of the audio files using the
+    ```
+   python wav2vec_bert_extractor.py
+    ```
+
+   script. The output will consist of a single `.npy` file for each dataset containing the features in the order listed in the protocols file. 
 
 
 ## Running the individual experiments from the paper
 
-1) Checkpoint attribution
+### 1) Checkpoint attribution
    
-   For the simple checkpoint attribution based on layer 4 features of the w2v-bert-2.0 model, you can use the `run_checkpoint_attribution.py` script. The script will use the complete set of features (from all datasets) as listed in `config.py`, and split them into train and test partitions at a 80:20 ratio. It then fits a kNN with k=21 neighbours and displays the classification report. You can optionally use a standard scaler before fitting the kNN (just uncomment that part of the code).
+   For the simple checkpoint attribution based on layer 4 features of the w2v-bert-2.0 model, you can use the
+
+   ```
+   run_checkpoint_attribution.py
+   ```
+
+   script. The script will use the complete set of features (from all datasets) as listed in `config.py`, and split them into train and test partitions at a 80:20 ratio. It will then fit a kNN with k=21 neighbours and display the classification report. You can optionally use a standard scaler before fitting the kNN (just uncomment that part of the code).
 
    If you also opt to print or save the confusion matrix, it should resemble Figure 1 from the paper, with very few mis-attributions across the datasets. The full matrix is also available [here](confusion_21_neighbors.pdf). The results are also saved to `results_checkpoint_attribution.log`.
    
-2) Speaker classification
+### 2) Speaker classification
    
-   For the LJSpeech systems' attribution as listed at the end of Section 3.2 you can use the `run_ljspeech_classification.py` script. The result (with some degree of randomness due to the train-test split) should look something like:
+   For the LJSpeech systems' attribution as listed at the end of Section 3.2 you can use the 
+   
+   ```
+   python run_ljspeech_classification.py
+   ``` 
+   
+   script. The result (with some degree of randomness due to the train-test split if the seed is not set) should look something like:
+    
     ```
                                                   precision    recall  f1-score   support
                                       LJSpeech       0.89      0.96      0.92       419
@@ -62,15 +80,28 @@ Citation
           en_tts_models_en_ljspeech_vits--neon       0.49      0.41      0.45        98
                                   accuracy                           0.84      1430
                                  macro avg       0.83      0.81      0.82      1430
-                              weighted avg       0.85      0.84      0.84      1430```
+                              weighted avg       0.85      0.84      0.84      1430
+    ```
 
 
-Similarly, for the multispeaker checkpoints, you can use the `run_speaker_classif_multispeaker_systems.py` script. 
+Similarly, for the multispeaker checkpoints, you can use 
 
-Results from these steps are saved to `results_ljspeech_classification.txt` and `results_multispeaker_systems_classification.log`.
+```
+python3 run_speaker_classif_multispeaker_systems.py
+``` 
 
-3) Out of distribution (OOD) detection
-   The last section of the paper introduced the OOD detection of novel checkpoints based on the kNN distance. You can run the OOD detection using the `python run_ood.py` script. The output will show the results for each of the 5 datasets in terms of OOD detection accuracy. 5 checkpoints from each dataset are set aside: 2 for validation and 2 for testing.
+Results from these steps are saved to `results_ljspeech_classification.log` and `results_multispeaker_systems_classification.log`.
+
+### 3) Out of distribution (OOD) detection
+
+   The last section of the paper introduced the OOD detection of novel checkpoints based on the kNN distance. You can run the OOD detection using: 
+   
+   ```
+   python run_ood.py
+   ``` 
+   The output will show the results for each of the 5 datasets in terms of OOD detection accuracy. 5 checkpoints from each dataset are set aside: 2 for validation and 2 for testing.
 
 
 
+# Acknowledgements
+This work was co-funded by EU Horizon project AI4TRUST (No. 101070190), and by the Romanian Ministry of Research, Innovation and Digitization project DLT-AI SECSPP (ID: PN-IV-P6-6.3-SOL-2024-2-0312).
