@@ -23,7 +23,7 @@ Citation
    Download the datasets from the original repositories:
    - [ASV19](https://datashare.ed.ac.uk/handle/10283/3336)
    - [ASV21](https://www.asvspoof.org/index2021.html)
-   - [ASV5](https://www.asvspoof.org/workshop2024)
+   - [ASV5](https://zenodo.org/records/14498691)
    - [MLAAD v5](https://deepfake-total.com/mlaad)
    - [TIMIT](https://zenodo.org/records/6560159)
   
