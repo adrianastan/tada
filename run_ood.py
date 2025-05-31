@@ -9,8 +9,6 @@ from scipy.interpolate import interp1d
 from sklearn.metrics import roc_curve
 from sklearn.preprocessing import StandardScaler
 
-
-
 SEED = 42
 random.seed(SEED)
 print(f"SEED = {SEED}")
@@ -112,7 +110,7 @@ def read_data(N=2):
     Y = np.array(Y)
     
     print ("\nX shape:", X.shape)    
-    print ("\nY shape:", Y.shape)
+    print ("Y shape:", Y.shape)
     
 
 
@@ -148,9 +146,9 @@ def read_data(N=2):
     val_samples = np.setdiff1d(rem_samples, test_samples)
 
     print("Overlaps:")
-    print("Train-test", np.intersect1d(train_samples,test_samples))
-    print("Train-val", np.intersect1d(train_samples, val_samples))
-    print("Test-val", np.intersect1d(test_samples, val_samples))
+    print("\tTrain-test", np.intersect1d(train_samples,test_samples))
+    print("\tTrain-val", np.intersect1d(train_samples, val_samples))
+    print("\tTest-val", np.intersect1d(test_samples, val_samples))
 
     print("UNK train systs: ", len(unk_train_samples), unk_train_syst)
     print("UNK val systs: ", len(unk_val_samples), unk_val_syst)
@@ -180,19 +178,15 @@ def read_data(N=2):
     yval = Y[list(val_samples)+unk_val_samples]
     yval = np.array([syst_keys[k] for k in yval])
 
-    print("TRAIN size and number of classes: ", Xtrain.shape[0], len(set(ytrain)))
-    print("VAL size and number of classes: ", Xval.shape[0], len(set(yval)))
-    print("TEST size and number of classes: ", Xtest.shape[0], len(set(ytest)))
-
+    #print("TRAIN size and number of classes: ", Xtrain.shape[0], len(set(ytrain)))
+    #print("VAL size and number of classes: ", Xval.shape[0], len(set(yval)))
+    #print("TEST size and number of classes: ", Xtest.shape[0], len(set(ytest)))
     return Xtrain, ytrain, Xval, yval, Xtest, ytest, [db_labels[i] for i in test_samples+unk_test_samples]
-
-            
-
 
 
 if __name__ == "__main__":
-    X_train, y_train, X_val, y_val, X_test, y_test, db_labels = read_data()
 
+    X_train, y_train, X_val, y_val, X_test, y_test, db_labels = read_data()
     # Fit the kNN OOD detector
     detector = KNN_OOD_Detector(k=1)
     print("Using K:=", detector.k)

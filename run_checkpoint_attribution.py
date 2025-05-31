@@ -6,12 +6,15 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from config import *
+import random
 
 os.environ["PYTHONDONTWRITEBYTECODE"] = "1"
 
+SEED = 42
+random.seed(SEED)
+print(f"SEED = {SEED}")
 
-## Selected datasets
-dbs = {'asv19':0, 'asv21':1, 'timit':2,  'mlaad':3,  'asv5':4}
+
 BONAFIDES = False # do not use the bonafide samples for attribution
 
 Y = []
@@ -20,10 +23,9 @@ c = 0
 for fi in metadata:
     with open(os.path.join(meta_dir,fi)) as fin:
         for line in fin.readlines():
-            if fi.split('_')[0] in dbs:
-                if 'bonafide' not in line.strip().split('|')[2]:
-                    Y.append(fi.split('_')[0]+"_"+line.strip().split('|')[2])
-                    valid.append(c)
+            if 'bonafide' not in line.strip().split('|')[2]:
+                Y.append(fi.split('_')[0]+"_"+line.strip().split('|')[2])
+                valid.append(c)
             c+=1
 
 ## Assign numeric labels to systems
@@ -53,8 +55,7 @@ print ("\nX shape:", X.shape)
 print("Y shape: ", Y.shape)
 
 ## Train test split
-TEST_SIZE = 0.2
-Xtrain, Xtest, ytrain, ytest = train_test_split(X, Y, test_size=TEST_SIZE, random_state=42)
+Xtrain, Xtest, ytrain, ytest = train_test_split(X, Y, test_size=0.2, random_state=SEED)
 
 print("Train size: ", Xtrain.shape[0])
 print("Test size: ", Xtest.shape[0])
