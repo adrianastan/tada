@@ -64,24 +64,24 @@ Citation
    ``` 
    
    script. The result (with some degree of randomness due to the train-test split if the seed is not set) should look something like:
-    
-    ```
-                                                  precision    recall  f1-score   support
-                                      LJSpeech       0.89      0.96      0.92       419
-          en_tts_models_en_ljspeech_fast_pitch       0.78      0.89      0.83        87
-            en_tts_models_en_ljspeech_glow-tts       0.93      0.97      0.95       104
-          en_tts_models_en_ljspeech_neural_hmm       0.96      0.85      0.90       100
-            en_tts_models_en_ljspeech_overflow       0.87      0.88      0.88       111
-       en_tts_models_en_ljspeech_speedy-speech       0.84      0.91      0.88       105
-       en_tts_models_en_ljspeech_tacotron2-DCA       1.00      0.89      0.94       103
-       en_tts_models_en_ljspeech_tacotron2-DDC       0.94      0.74      0.83       103
-    en_tts_models_en_ljspeech_tacotron2-DDC_ph       0.94      0.88      0.91       102
-                en_tts_models_en_ljspeech_vits       0.50      0.53      0.51        98
-          en_tts_models_en_ljspeech_vits--neon       0.49      0.41      0.45        98
-                                  accuracy                           0.84      1430
-                                 macro avg       0.83      0.81      0.82      1430
-                              weighted avg       0.85      0.84      0.84      1430
-    ```
+
+```
+                                              precision    recall  f1-score   support
+                                  LJSpeech       0.89      0.96      0.92       419
+      en_tts_models_en_ljspeech_fast_pitch       0.78      0.89      0.83        87
+        en_tts_models_en_ljspeech_glow-tts       0.93      0.97      0.95       104
+      en_tts_models_en_ljspeech_neural_hmm       0.96      0.85      0.90       100
+        en_tts_models_en_ljspeech_overflow       0.87      0.88      0.88       111
+   en_tts_models_en_ljspeech_speedy-speech       0.84      0.91      0.88       105
+   en_tts_models_en_ljspeech_tacotron2-DCA       1.00      0.89      0.94       103
+   en_tts_models_en_ljspeech_tacotron2-DDC       0.94      0.74      0.83       103
+en_tts_models_en_ljspeech_tacotron2-DDC_ph       0.94      0.88      0.91       102
+            en_tts_models_en_ljspeech_vits       0.50      0.53      0.51        98
+      en_tts_models_en_ljspeech_vits--neon       0.49      0.41      0.45        98
+                              accuracy                           0.84      1430
+                             macro avg       0.83      0.81      0.82      1430
+                          weighted avg       0.85      0.84      0.84      1430
+```
 
 
 Similarly, for the multispeaker checkpoints, you can use 
