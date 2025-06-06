@@ -5,7 +5,7 @@ This is the official repository for the Interspeech 2025 submission:
 
 Citation
 
-```
+```%bibtex
 @inproceedings{stan_interspeech25,
                author={Stan, Adriana and Combei, David and Oneata, Dan and Cucu, Horia},
                booktitle={Proc. of Interspeech}, 
@@ -14,7 +14,7 @@ Citation
 ```
 
 
---
+
 
 ## Setup
 
