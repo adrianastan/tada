@@ -99,7 +99,7 @@ Results from these steps are saved to `results_ljspeech_classification.log` and 
    ```
    python run_ood.py
    ``` 
-   The output will show the results for each of the 5 datasets in terms of OOD detection accuracy. 5 checkpoints from each dataset are set aside: 2 for validation and 2 for testing.
+   The output will show the results for each of the 5 datasets in terms of OOD detection accuracy. Four random checkpoints from each dataset (20 in total) are set aside: two for validation and two for testing. The kNN distance is computed over the validation samples, and the results are shown over the test samples.
 
 
 
