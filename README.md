@@ -45,19 +45,19 @@ Citation
 
 ### 1) Checkpoint attribution
    
-   For the simple checkpoint attribution based on layer 4 features of the w2v-bert-2.0 model, you can use the
+   For the simple checkpoint attribution based on layer 4 features of the w2v-bert-2.0 model, you can use
 
    ```
-   run_checkpoint_attribution.py
+   python run_checkpoint_attribution.py
    ```
 
-   script. The script will use the complete set of features (from all datasets) as listed in `config.py`, and split them into train and test partitions at a 80:20 ratio. It will then fit a kNN with k=21 neighbours and display the classification report. You can optionally use a standard scaler before fitting the kNN (just uncomment that part of the code).
+   The script will use the complete set of features (from all datasets) as listed in `config.py`, and split them into train and test partitions at a 80:20 ratio. It will then fit a kNN with k=21 neighbours and display the classification report. You can optionally use a standard scaler before fitting the kNN (just uncomment that part of the code).
 
    If you also opt to print or save the confusion matrix, it should resemble Figure 1 from the paper, with very few mis-attributions across the datasets. The full matrix is also available [here](confusion_21_neighbors.pdf). The results are also saved to `results_checkpoint_attribution.log`.
    
 ### 2) Speaker classification
    
-   For the LJSpeech systems' attribution as listed at the end of Section 3.2 you can use the 
+   For the LJSpeech systems' attribution as listed at the end of Section 3.2 you can use 
    
    ```
    python run_ljspeech_classification.py
@@ -87,7 +87,7 @@ Citation
 Similarly, for the multispeaker checkpoints, you can use 
 
 ```
-python3 run_speaker_classif_multispeaker_systems.py
+python run_speaker_classif_multispeaker_systems.py
 ``` 
 
 Results from these steps are saved to `results_ljspeech_classification.log` and `results_multispeaker_systems_classification.log`.
