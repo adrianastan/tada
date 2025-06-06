@@ -38,7 +38,7 @@ Citation
    python wav2vec_bert_extractor.py
     ```
 
-   script. The output will consist of a single `.npy` file for each dataset containing the features in the order listed in the protocols file. 
+   The output will consist of a single `.npy` file for each dataset containing the features in the order listed in the protocols file. 
 
 
 ## Running the individual experiments from the paper
