@@ -33,12 +33,12 @@ Citation
    
    In our implementation we used the [w2v-bert-2.0](https://huggingface.co/facebook/w2v-bert-2.0) pretrained, frozen model.
 
-   You can extract the average pooled representations of the audio files using the
+   You can extract the average pooled representations of the audio files using:
     ```
    python wav2vec_bert_extractor.py
     ```
 
-   The output will consist of a single `.npy` file for each dataset containing the features in the order listed in the protocols file. 
+   You will need to specify the path to the audio files, the protocol file, and an output folder. The output will consist of a single `.npy` file for each dataset containing the features in the order listed in the protocols file. 
 
 
 ## Running the individual experiments from the paper
@@ -57,13 +57,13 @@ Citation
    
 ### 2) Speaker classification
    
-   For the LJSpeech systems' attribution as listed at the end of Section 3.2 you can use 
+   For the **LJSpeech systems' attribution** as listed at the end of Section 3.2 you can use 
    
    ```
    python run_ljspeech_classification.py
    ``` 
    
-   script. The result (with some degree of randomness due to the train-test split if the seed is not set) should look something like:
+   The result (with some degree of randomness due to the train-test split if the seed is not set) should look something like:
 
 ```
                                               precision    recall  f1-score   support
@@ -84,7 +84,7 @@ en_tts_models_en_ljspeech_tacotron2-DDC_ph       0.94      0.88      0.91       
 ```
 
 
-Similarly, for the multispeaker checkpoints, you can use 
+Similarly, for the **multispeaker checkpoints**, you can use 
 
 ```
 python run_speaker_classif_multispeaker_systems.py
