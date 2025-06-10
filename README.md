@@ -1,9 +1,9 @@
 # TADA: Training-free Attribution and Out-of-Domain Detection of Audio Deepfakes
 
 This is the official repository for the Interspeech 2025 submission:
-> Adriana Stan, David Combei, Dan Oneata, Horia Cucu, "TADA: Training-free Attribution and Out-of-Domain Detection of Audio Deepfake", accepted at Interspeech 2025, Rotterdam, Netherlands.
+> Adriana Stan, David Combei, Dan Oneata, Horia Cucu, "[TADA: Training-free Attribution and Out-of-Domain Detection of Audio Deepfake](https://arxiv.org/abs/2506.05802)", accepted at Interspeech 2025, Rotterdam, Netherlands.
 
-Preprint available on [arXiv](https://arxiv.org/abs/2506.05802)
+
 
 Citation
 
